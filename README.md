@@ -2,6 +2,15 @@
 ### Realizado por Alex Alvarez - Enero 2024
 #### Se hace uso de la plantilla karate-template
 
+## **Implementación**
+Clonar el repositorio via Https 
+
+Cargar el proyecto
+
+Implementar dependencias con el comando
+
+mvn verify
+
 ## **Descripción**
 Pruebas sobre una Api de una petStore empleando Karate
 
