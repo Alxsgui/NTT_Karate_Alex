@@ -15,7 +15,7 @@ mvn verify
 Pruebas sobre una Api de una petStore empleando Karate
 
 ## **Tecnológias**
-* SDK : 21.0.1
+* JDK : 17.0
 * Building tool: Maven 3.9.6
 * IDE: IntellIJ
 
