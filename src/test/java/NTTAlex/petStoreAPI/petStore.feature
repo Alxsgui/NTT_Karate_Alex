@@ -5,32 +5,42 @@ Feature: Pruebas para la API de la PetStore
 
 
 
-  Scenario: Crear un usuario
+  Scenario Outline: Creación de un usuario - <id> - <username>
     Given path '/user'
-    And request { "id": 10001, "username": "PruebasAlex", "email": "usuario@ntt.com" }
+    And request { username: '<username>', email: '<email>' }
     When method post
     Then status 200
 
+    Examples:
+      | read('datos.csv') |
 
-  Scenario: Buscar un usuario existente
-    Given path '/user/PruebasAlex'
+
+  Scenario Outline: Buscar un usuario existente -  <id> - <username>
+    Given path '/user/<username>'
     When method get
     Then status 200
 
-  Scenario: Actualizar nombre y correo del usuario
-    Given path '/user/PruebasAlex'
-    And request { username: 'PruebasAlex_Update', email: 'alex_update@ntt.com' }
+    Examples:
+      | read('datos.csv') |
+
+  Scenario Outline: Actualizar nombre y correo del usuario - <id> - <newUsername>
+    Given path '/user/<username>'
+    And request { username: '<newUsername>', email: '<newEmail>' }
     When method put
     Then status 200
+    Examples:
+      | read('datos.csv') |
 
-  Scenario: Buscar un usuario actualizado
-    Given path '/user/PruebasAlex_Update'
+  Scenario Outline: Buscar un usuario actualizado - <id> - <newUsername>
+    Given path '/user/<newUsername>'
     When method get
     Then status 200
+   Examples:
+     | read('datos.csv') |
 
-  Scenario: Eliminar un usuario existente
-    Given path '/user/PruebasAlex_Update'
+  Scenario Outline: Eliminar un usuario existente <id> - <newUsername>
+    Given path '/user/<newUsername>'
     When method delete
     Then status 200
-
-
+    Examples:
+      | read('datos.csv') |
