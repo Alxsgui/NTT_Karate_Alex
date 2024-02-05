@@ -7,9 +7,10 @@ Feature: Pruebas para la API de la PetStore
 
   Scenario Outline: Creación de un usuario - <id> - <username>
     Given path '/user'
-    And request { username: '<username>', email: '<email>' }
+    And request { id: '<id>' , username: '<username>', email: '<email>' }
     When method post
     Then status 200
+    * karate.pause(1000) // Pausa de 1 segundos
 
     Examples:
       | read('datos.csv') |
@@ -19,15 +20,17 @@ Feature: Pruebas para la API de la PetStore
     Given path '/user/<username>'
     When method get
     Then status 200
+    * karate.pause(1000) // Pausa de 1 segundos
 
     Examples:
       | read('datos.csv') |
 
   Scenario Outline: Actualizar nombre y correo del usuario - <id> - <newUsername>
     Given path '/user/<username>'
-    And request { username: '<newUsername>', email: '<newEmail>' }
+    And request {  id: '<id>', username: '<newUsername>', email: '<newEmail>' }
     When method put
     Then status 200
+    * karate.pause(1000) // Pausa de 1 segundos
     Examples:
       | read('datos.csv') |
 
@@ -35,6 +38,7 @@ Feature: Pruebas para la API de la PetStore
     Given path '/user/<newUsername>'
     When method get
     Then status 200
+    * karate.pause(1000) // Pausa de 1 segundos
    Examples:
      | read('datos.csv') |
 
@@ -42,5 +46,6 @@ Feature: Pruebas para la API de la PetStore
     Given path '/user/<newUsername>'
     When method delete
     Then status 200
+    * karate.pause(1000) // Pausa de 1 segundos
     Examples:
       | read('datos.csv') |
